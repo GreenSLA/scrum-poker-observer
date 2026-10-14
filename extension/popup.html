@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Scrum Poker Mirror</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="top">
+      <img src="icons/icon32.png" width="20" height="20" alt="" />
+      <h1>Scrum Poker Mirror</h1>
+      <label class="switch" title="Включить / выключить">
+        <input type="checkbox" id="enabled" />
+        <span class="slider"></span>
+      </label>
+    </header>
+
+    <section class="block">
+      <div class="seg" role="radiogroup" aria-label="Режим">
+        <label><input type="radio" name="mode" value="copy" /><span>Как у участника</span></label>
+        <label><input type="radio" name="mode" value="average" /><span>Среднее по комнате</span></label>
+      </div>
+
+      <div id="copyOptions" class="field">
+        <label for="trackName">Ник участника</label>
+        <input id="trackName" list="names" autocomplete="off" spellcheck="false" placeholder="например, Bob" />
+        <datalist id="names"></datalist>
+        <p class="hint">Или кликните по участнику в списке ниже.</p>
+      </div>
+
+      <div id="averageOptions" class="field">
+        <label for="rounding">Если среднего нет среди карт</label>
+        <select id="rounding">
+          <option value="nearest">ближайшая карта (при равенстве — бóльшая)</option>
+          <option value="up">округлять вверх</option>
+          <option value="down">округлять вниз</option>
+        </select>
+        <p class="hint">Считается по числовым голосам остальных, без вашего; «?» и ☕ не учитываются.</p>
+      </div>
+
+      <div class="field">
+        <label for="timing">Когда голосовать</label>
+        <select id="timing">
+          <option value="immediate">сразу, не дожидаясь вскрытия</option>
+          <option value="reveal">только после вскрытия карт</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Задержка перед голосом, сек</label>
+        <div class="row">
+          <span>от</span><input id="delayMin" type="number" min="0" max="120" step="0.5" />
+          <span>до</span><input id="delayMax" type="number" min="0" max="120" step="0.5" />
+        </div>
+      </div>
+    </section>
+
+    <section class="block status">
+      <div id="statusLine" class="status-line"></div>
+      <div id="details" class="details"></div>
+    </section>
+
+    <section class="block" id="peopleBlock" hidden>
+      <div class="people-head">
+        <span>Участники</span>
+        <span id="revealState" class="muted"></span>
+      </div>
+      <ul id="people"></ul>
+    </section>
+
+    <footer>
+      <button id="resync" type="button">Синхронизировать сейчас</button>
+    </footer>
+
+    <script src="core.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

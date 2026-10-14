@@ -1,0 +1,11 @@
+{
+  "name": "scrumpoker-mirror-tests",
+  "private": true,
+  "scripts": {
+    "test": "node --test 'core.test.js' 'hook.test.js'",
+    "e2e": "node e2e.js"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^24.43.1"
+  }
+}

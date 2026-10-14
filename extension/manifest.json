@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Scrum Poker Mirror",
+  "version": "1.0.0",
+  "description": "scrumpoker-online.org: автоматически ставит вашу оценку как у выбранного участника или как среднее по комнате.",
+  "minimum_chrome_version": "111",
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": ["https://www.scrumpoker-online.org/*", "https://scrumpoker-online.org/*"],
+      "js": ["page-hook.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://www.scrumpoker-online.org/*", "https://scrumpoker-online.org/*"],
+      "js": ["core.js", "content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_title": "Scrum Poker Mirror",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
